@@ -1,6 +1,6 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/Task_Data.dart';
 
 class AddTask extends StatelessWidget {
   final Function addNewTask;
@@ -13,9 +13,11 @@ class AddTask extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(30),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        // ignore: prefer_const_constructors
         Text(
           'Add New Task',
           textAlign: TextAlign.center,
+          // ignore: prefer_const_constructors
           style: TextStyle(
             fontSize: 25,
             color: Color.fromARGB(255, 66, 132, 165),
@@ -34,7 +36,8 @@ class AddTask extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            addNewTask(newTask);
+            Provider.of<TaskData>(context, listen: false).addTask(newTask!);
+            Navigator.pop(context);
           },
           child: Text('Add'),
           style: TextButton.styleFrom(

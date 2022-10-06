@@ -2,20 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/AddTask.dart';
-import '../models/Task.dart';
+import '../models/Task_Data.dart';
 import '../widgets/TasksList.dart';
+import 'package:provider/provider.dart';
 
-class TodoApp extends StatefulWidget {
-  const TodoApp({super.key});
-
-  @override
-  State<TodoApp> createState() => _TodoAppState();
-}
-
-class _TodoAppState extends State<TodoApp> {
-  List<Task> tasks = [
-  ];
-
+class TodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +21,10 @@ class _TodoAppState extends State<TodoApp> {
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddTask((newTask) {
-                  setState(() {
-                    tasks.add(Task(name: newTask));
-                    Navigator.pop(context);
-                  });
+                  // setState(() {
+                  //   tasks.add(Task(name: newTask));
+                  //   Navigator.pop(context);
+                  // });
                 }),
               ),
             ),
@@ -76,7 +67,7 @@ class _TodoAppState extends State<TodoApp> {
             // tasks.length > 0
             //     ? 'You\'ve ${tasks.length} Tasks 2Do !'
             //     : 'You List Is Empty !',
-            'You\'ve ${tasks.length} Tasks 2Do !',
+            'You\'ve ${Provider.of<TaskData>(context).tasks.length} Tasks 2Do !',
             style: TextStyle(
               color: Color.fromARGB(255, 245, 245, 245),
               fontSize: 15,
@@ -94,7 +85,7 @@ class _TodoAppState extends State<TodoApp> {
                   Radius.circular(20),
                 ),
               ),
-              child: TasksList(tasks),
+              child: TasksList(),
             ),
           ),
         ]),
