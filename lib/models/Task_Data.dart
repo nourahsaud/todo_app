@@ -15,6 +15,11 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
 
+  // updating the todo item
+  void updateTodo(Task task) {
+    
+  }
+
   // Delete task
   void deleteTask(Task task) {
     tasks.remove(task);

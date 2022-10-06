@@ -7,12 +7,16 @@ class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<TaskData>(builder: (context, taskData, child) {
-      return ListView.builder(
+      return ListView.separated(
         itemCount: taskData.tasks.length,
+        separatorBuilder: (context, index) => Divider(),
         itemBuilder: (context, index) {
           return TaskTile(
             isChecked: taskData.tasks[index].isDone,
             taskTitle: taskData.tasks[index].name,
+            // changeItem: (newValue) {
+            //   taskDate.updateTodo(taskData.tasks[index]);
+            // },
             checkboxChange: (newValue) {
               taskData.updateTask(taskData.tasks[index]);
             },
